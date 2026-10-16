@@ -30,8 +30,8 @@
 │   ├── task2/   Lab1Task2.csproj, Program.cs, README.md
 │   └── task3/   Lab1Task3.csproj, Program.cs, README.md
 ├── lab2/        Lab2.csproj, Program.cs, README.md
-├── lab3/        будет добавлено
-└── lab4/        будет добавлено
+├── lab3/        Lab3.csproj, Program.cs, README.md
+└── lab4/        Lab4.csproj, Program.cs, README.md
 ```
 
 ## Соответствие папок и задач
@@ -42,8 +42,8 @@
 | `lab1/task2` | 2      | Массив из 16000 элементов, скользящее среднее, разные типы распределения работ.                          | `dotnet run -c Release -- 8 16000 static`         |
 | `lab1/task3` | 3      | Вывод идентификаторов потоков в обратном порядке (5 способов синхронизации).                             | `dotnet run -c Release -- 8 1000`                 |
 | `lab2`       | 4      | Перемножение больших матриц, сравнение последовательной и параллельной версий на 2, 4, 8 потоках.         | `dotnet run -c Release -- 8 1000`                 |
-| `lab3`       | 5      | Геометрический центр точек в 3D. Будет добавлено.                                                         | —                                                 |
-| `lab4`       | 6      | Глобальная сумма и критические секции. Будет добавлено.                                                   | —                                                 |
+| `lab3`       | 5      | Геометрический центр точек в 3D. Будет добавлено.                                                         | `dotnet run -c Release -- gen points.txt 10000000`|
+| `lab4`       | 6      | Функциональная декомпозиция, глобальная сумма и критические секции                                        | `dotnet run -c Release -- gen points.txt 10000000`|
 
 Все команды выполняются из папки соответствующей задачи (там лежит `.csproj`), либо с указанием проекта: `dotnet run -c Release --project lab2 -- 8 1000`.
 Для замеров времени всегда используйте конфигурацию **Release** (`-c Release`).
@@ -60,7 +60,8 @@ cd lab1/task1 && dotnet run -c Release -- 8
 cd ../task2   && dotnet run -c Release -- 8 16000 static
 cd ../task3   && dotnet run -c Release -- 8 1000
 cd ../../lab2 && dotnet run -c Release -- 8 1000
-```
+cd ../../lab3 && dotnet run -c Release -- 8 sample_points.txt
+cd ../../lab4 && dotnet run -c Release -- sample_points.txt
 
 Сборка исполняемого файла:
 
@@ -78,7 +79,8 @@ dotnet publish -c Release -o out
 | `lab1/task2` | `<число_потоков> <размер_массива> [static\|dynamic\|guided\|runtime] [chunk]` |
 | `lab1/task3` | `<число_потоков> <число_повторов> [mutex\|cond\|chan_chain\|chan_array\|wg_chain]` |
 | `lab2`       | `<число_потоков> <размер_матрицы>`                                       |
-
+| `lab3`       | `<число_потоков> <файл> [loop|functional|all]`                           |
+| `lab4`       | `<файл> [critical|local|race|all]`                                       |
 Символы `--` в `dotnet run` отделяют аргументы `dotnet` от аргументов программы.
 
 ## Соответствие конструкций OpenMP и реализации в C#
